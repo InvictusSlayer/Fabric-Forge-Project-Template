@@ -1,6 +1,6 @@
 plugins {
-    id "architectury-plugin" version "3.4.+"
-    id "dev.architectury.loom" version "1.5.+" apply false
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "1.5-SNAPSHOT" apply false
 }
 
 architectury.minecraft = mc_version
@@ -13,11 +13,8 @@ subprojects {
     apply plugin: "dev.architectury.loom"
 
     base.archivesName = "${mod_id}-${project.name}"
-
-    version = mod_version
+    version = "${mc_version}-${mod_version}"
     group = mod_group
-
-    java.withSourcesJar()
 
     loom {
         silentMojangMappingsLicense()
@@ -25,7 +22,7 @@ subprojects {
     }
 
     repositories {
-        maven { url = 'https://maven.parchmentmc.org/' }
+        maven { url = "https://maven.parchmentmc.org/" }
     }
 
     dependencies {
@@ -36,7 +33,7 @@ subprojects {
         }
     }
 
-    tasks.named('processResources', ProcessResources).configure {
+    tasks.named("processResources", ProcessResources).configure {
         var replaceProperties = [
                 mc_version: mc_version, mc_range: mc_range,
                 fabric_version: fabric_version, forge_version: forge_version, forge_range: forge_range,
@@ -46,7 +43,7 @@ subprojects {
                 homepage_url: homepage_url, source_url: source_url, issue_url: issue_url
         ]
         inputs.properties replaceProperties
-        filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml']) {
+        filesMatching(["pack.mcmeta", "fabric.mod.json", "META-INF/mods.toml"]) {
             expand replaceProperties + [project: project]
         }
     }
@@ -55,6 +52,8 @@ subprojects {
         options.encoding = "UTF-8"
         options.release = 17
     }
+
+    java.withSourcesJar()
 
     publishing {
         publications {
