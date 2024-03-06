@@ -1,4 +1,4 @@
-## Fabric-Forge Project Template
+![Fabric-Forge Project Template](https://github.com/InvictusSlayer/Fabric-Forge-Project-Template/blob/main/common/src/main/resources/assets/template.png)
 This repository is a template for setting up a multi-project using [Architectury](https://docs.architectury.dev/start). Duplicate this project and go 
 through the files `architectury.common.json`, `fabric.mod.json`, `mods.toml` as well as all the **package names** and 
 `.mixins.json` files and change all occurrences of the word `template` to your mod-id. In addition, change instances of 
