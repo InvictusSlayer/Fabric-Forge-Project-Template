@@ -23,6 +23,11 @@ subprojects {
 
     repositories {
         maven { url = "https://maven.parchmentmc.org/" }
+
+        // JEI
+        maven { url = "https://dvs1.progwml6.com/files/maven/" } // Required for 1.18.2 - 1.20.2
+        maven { url = "https://maven.blamejared.com/" }
+        maven { url = "https://modmaven.dev" }
     }
 
     dependencies {
@@ -57,7 +62,7 @@ subprojects {
 
     publishing {
         publications {
-            maven(MavenPublication) {
+            register("mavenJava", MavenPublication) {
                 groupId = mod_group
                 artifactId = mod_id + "-" + project.name
                 version = mod_version
