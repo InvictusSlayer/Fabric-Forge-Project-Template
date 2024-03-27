@@ -4,7 +4,7 @@ import net.fabricmc.loader.api.FabricLoader;
 
 import java.nio.file.Path;
 
-public class TemplateExpectPlatformImpl {
+public class TemplatePlatformImpl {
 	public static Path getConfigDirectory() {
 		return FabricLoader.getInstance().getConfigDir();
 	}

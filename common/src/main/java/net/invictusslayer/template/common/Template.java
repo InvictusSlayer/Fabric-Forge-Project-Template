@@ -3,7 +3,7 @@ package net.invictusslayer.template.common;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
-import net.invictusslayer.template.TemplateExpectPlatform;
+import net.invictusslayer.template.TemplatePlatform;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -26,6 +26,6 @@ public class Template {
 		TABS.register();
 		ITEMS.register();
 
-		LOGGER.info(TemplateExpectPlatform.getConfigDirectory().toAbsolutePath().normalize().toString());
+		LOGGER.info(TemplatePlatform.getConfigDirectory().toAbsolutePath().normalize().toString());
 	}
 }

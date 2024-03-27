@@ -7,11 +7,25 @@ architectury {
     forge()
 }
 
-loom.forge {
-    convertAccessWideners = true
-    extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
+loom {
+    forge {
+        convertAccessWideners = true
+        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
-    mixinConfigs "${mod_id}.mixins.json", "${mod_id}-forge.mixins.json"
+        mixinConfigs "${mod_id}.mixins.json", "${mod_id}-forge.mixins.json"
+    }
+
+    runs {
+        data {
+            data()
+            programArgs "--all", "--mod", "${mod_id}"
+            programArgs "--output", project(":common").file("src/generated/resources").absolutePath
+            programArgs "--existing", file("src/main/resources").absolutePath
+            programArgs "--existing", file("src/generated/resources").absolutePath
+            programArgs "--existing", project(":common").file("src/main/resources").absolutePath
+            programArgs "--existing", project(":common").file("src/generated/resources").absolutePath
+        }
+    }
 }
 
 configurations {
@@ -25,8 +39,8 @@ configurations {
 dependencies {
     forge "net.minecraftforge:forge:${mc_version}-${forge_version}"
     modApi "dev.architectury:architectury-forge:${arch_version}"
+    modApi "me.shedaniel.cloth:cloth-config-forge:${cloth_version}"
 
-    modImplementation "com.github.glitchfiend:TerraBlender-forge:${mc_version}-${tb_version}"
     modRuntimeOnly "mezz.jei:jei-${mc_version}-forge:${jei_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
@@ -44,6 +58,10 @@ shadowJar {
 remapJar {
     input.set shadowJar.archiveFile
     dependsOn shadowJar
+}
+
+jar {
+    archiveClassifier = "dev"
 }
 
 sourcesJar {
