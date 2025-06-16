@@ -9,7 +9,7 @@ architectury {
 
 loom {
     runs {
-        datagen {
+        data {
             inherit server
             name "Minecraft Data"
             vmArg "-Dfabric-api.datagen"
@@ -41,7 +41,6 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader}"
     modApi "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     modApi "dev.architectury:architectury-fabric:${arch_version}"
-//    modApi "me.shedaniel:architectury-fabric:${arch_version}" // 1.16.5 only
 
     modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_version}").exclude(group: "net.fabricmc.fabric-api")
     modApi "com.terraformersmc:modmenu:${mm_version}"
